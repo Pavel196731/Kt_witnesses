@@ -4,4 +4,45 @@
     <string name="retry">Retry</string>
     <string name="loading">Loading</string>
     <string name="content_description">Book</string>
+    <string-array name="addresses">
+        <item>ул. Пушкина, д. 10, кв. 5, Москва</item>
+        <item>пр. Ленина, д. 22, офис 101, Санкт-Петербург</item>
+        <item>ул. Гагарина, д. 8, кв. 15, Казань</item>
+        <item>пер. Цветочный, д. 4, кв. 12, Екатеринбург</item>
+        <item>ул. Советская, д. 1, Омск</item>
+        <item>ул. Зеленая, д. 33, кв. 7, Новосибирск</item>
+        <item>ул. Центральная, д. 9, кв. 18, Краснодар</item>
+        <item>ул. Береговая, д. 5, Сочи</item>
+        <item>ул. Вокзальная, д. 11, кв. 3, Самара</item>
+        <item>пер. Цветочный, д. 4, кв. 12, Екатеринбург</item>
+        <item>ул. Советская, д. 1, Омск</item>
+        <item>ул. Зеленая, д. 33, кв. 7, Новосибирск</item>
+        <item>ул. Центральная, д. 9, кв. 18, Краснодар</item>
+        <item>ул. Береговая, д. 5, Сочи</item>
+        <item>ул. Вокзальная, д. 11, кв. 3, Самара</item>
+        <item>ул. Кирова, д. 15, кв. 6, Ростов-на-Дону</item>
+    </string-array>
+    <string name="address_selection_title">Выбор адреса</string>
+    <string name="save_button">Сохранить</string>
+    <string name="add_address_button">Добавить адрес</string>
+    <string name="back_content_description">Назад</string>
+    <string name="more_options">Дополнительно</string>
+    <string name="order_screen_title">Оформление заказа</string>
+    <string name="back_button">Назад</string>
+    <string name="pickup_option">Самовывоз</string>
+    <string name="courier_option">Курьер</string>
+    <string name="pickup_point">Пункт выдачи</string>
+    <string name="address_label">Адрес: %1$s</string>
+    <string name="storage_period">Срок хранения заказа: 14 дней</string>
+    <string name="change_address_button">Изменить адрес</string>
+    <string name="user_info_name">Иван Иванов</string>
+    <string name="user_info_phone">Тел: 8 800 555 35 35</string>
+    <string name="courier_address">г. Москва, ул. Курьерская, 15</string>
+    <string name="leave_at_door">Оставить у двери</string>
+    <string name="how_it_works">Как это работает?</string>
+    <string name="place_order_button">Оформить заказ</string>
+    <string name="place_order">Оформить заказ</string>
+    <string name="user_name">Иван Иванов</string>
+    <string name="user_phone">Тел: 8 800 555 35 35</string>
+    <string name="courier_comments">Комментарии курьеру</string>
 </resources>

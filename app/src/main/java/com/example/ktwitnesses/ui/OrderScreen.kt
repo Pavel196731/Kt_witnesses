@@ -15,17 +15,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.ktwitnesses.R
 
 @Preview(showBackground = true)
 @Composable
@@ -43,9 +46,9 @@ fun OrderScreen(
     val isChecked by viewModel.isChecked
     val address by viewModel1.selectedAddress.collectAsState()
     Scaffold(topBar = {
-        TopAppBar(title = { Text("Оформление заказа") }, navigationIcon = {
+        TopAppBar(title = { stringResource(id = R.string.order_screen_title) }, navigationIcon = {
             IconButton(onClick = onBackPressed) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = "Назад")
+                Icon(Icons.Filled.ArrowBack, contentDescription = stringResource(id = R.string.back_button))
             }
         })
     }) { paddingValues ->
@@ -62,7 +65,10 @@ fun OrderScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                listOf("Самовывоз", "Курьер").forEach { option ->
+                listOf(
+                    stringResource(id = R.string.pickup_option),
+                    stringResource(id = R.string.courier_option)
+                ).forEach { option ->
                     Row(
                         modifier = Modifier
                             .weight(1f)
@@ -91,56 +97,66 @@ fun OrderScreen(
                     }
                 }
             }
-            if (selectedOption == "Самовывоз") {
+            if (selectedOption == stringResource(id = R.string.pickup_option)) {
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    Text("Пункт выдачи", fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                    Text("Адрес: $address", modifier = Modifier.padding(vertical = 4.dp))
-                    Text("Срок хранения заказа: 14 дней", modifier = Modifier.padding(bottom = 16.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(imageVector = Icons.Filled.Place, contentDescription = stringResource(id = R.string.pickup_point), modifier = Modifier.size(24.dp))
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(stringResource(id = R.string.pickup_point), fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    }
+                    Text(
+                        text = String.format(stringResource(id = R.string.address_label), address),
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    )
+                    Text(stringResource(id = R.string.storage_period), modifier = Modifier.padding(bottom = 16.dp))
                     Spacer(modifier = Modifier.height(4.dp))
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.clickable(onClick = onUserClick)
                     ) {
-                        Icon(imageVector = Icons.Filled.Person, contentDescription = "Пользователь")
+                        Icon(imageVector = Icons.Filled.Person, contentDescription = stringResource(id = R.string.user_name))
                         Spacer(modifier = Modifier.width(8.dp))
                         Column(
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            Text("Иван Иванов")
-                            Text("Тел: 8 800 555 35 35")
+                            Text(stringResource(id = R.string.user_name))
+                            Text(stringResource(id = R.string.user_phone))
                         }
                     }
                     Button(
-                        onClick = { navController.navigate("address_selection")},
+                        onClick = { navController.navigate("address_selection") },
                         modifier = Modifier.fillMaxWidth()
-                    ) { Text("Изменить адрес") }
+                    ) { Text(stringResource(id = R.string.change_address_button)) }
                 }
             } else {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "Курьер")
+                        Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = stringResource(id = R.string.courier_address))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Курьер по адресу", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                        Text(stringResource(id = R.string.courier_address), fontWeight = FontWeight.Bold, fontSize = 16.sp)
                     }
-                    Text("Адрес: г. Москва, ул. Курьерская, 15", modifier = Modifier.padding(vertical = 4.dp))
+                    Text(
+                        text = String.format(stringResource(id = R.string.address_label), address),
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    )
                     Button(
-                        onClick = onAddressChange,
+                        onClick = { navController.navigate("address_selection") },
                         modifier = Modifier.fillMaxWidth()
-                    ) { Text("Изменить адрес") }
+                    ) { Text(stringResource(id = R.string.change_address_button)) }
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.clickable(onClick = onUserClick)
                     ) {
-                        Icon(imageVector = Icons.Filled.Person, contentDescription = "Пользователь")
+                        Icon(imageVector = Icons.Filled.Person, contentDescription = stringResource(id = R.string.user_name))
                         Spacer(modifier = Modifier.width(8.dp))
                         Column(
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            Text("Иван Иванов")
-                            Text("Тел: 8 800 555 35 35")
+                            Text(stringResource(id = R.string.user_name))
+                            Text(stringResource(id = R.string.user_phone))
                         }
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -149,9 +165,9 @@ fun OrderScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.clickable(onClick = onCommentClick)
                     ) {
-                        Icon(imageVector = Icons.Filled.Info, contentDescription = "Комментарии")
+                        Icon(imageVector = Icons.Filled.Info, contentDescription = stringResource(id = R.string.courier_comments))
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Комментарии курьеру")
+                        Text(stringResource(id = R.string.courier_comments))
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -167,13 +183,13 @@ fun OrderScreen(
                             onCheckedChange = { viewModel.toggleChecked() }
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Оставить у двери")
+                        Text(stringResource(id = R.string.leave_at_door))
                     }
                 }
                 Spacer(modifier = Modifier.height(30.dp))
 
                 Text(
-                    text = "Как это работает?",
+                    text = stringResource(id = R.string.how_it_works),
                     color = MaterialTheme.colors.primary,
                     modifier = Modifier.clickable { }
                 )
@@ -192,7 +208,7 @@ fun OrderScreen(
                 )
             ) {
                 Text(
-                    text = "Оформить заказ", color = Color.Black, fontWeight = FontWeight.Bold
+                    text = stringResource(id = R.string.place_order), color = Color.Black, fontWeight = FontWeight.Bold
                 )
             }
         }

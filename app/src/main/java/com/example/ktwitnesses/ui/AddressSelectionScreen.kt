@@ -29,7 +29,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.ktwitnesses.R
+
 
 @Composable
 fun AddressSelectionScreen(
@@ -44,10 +47,13 @@ fun AddressSelectionScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Выбор адреса") },
+                title = { Text(stringResource(R.string.address_selection_title)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Назад")
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back_content_description)
+                        )
                     }
                 }
             )
@@ -84,7 +90,10 @@ fun AddressSelectionScreen(
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(text = address, modifier = Modifier.weight(1f))
                         IconButton(onClick = { /* TODO: handle address options */ }) {
-                            Icon(Icons.Filled.MoreVert, contentDescription = "Дополнительно")
+                            Icon(
+                                imageVector = Icons.Filled.MoreVert,
+                                contentDescription = stringResource(R.string.more_options)
+                            )
                         }
                     }
                 }
@@ -94,16 +103,18 @@ fun AddressSelectionScreen(
                 onClick = {
                     onSave()
                 },
-                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
             ) {
-                Text("Сохранить")
+                Text(stringResource(R.string.save_button))
             }
 
             Button(
                 onClick = onAddAddress,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Добавить адрес")
+                Text(stringResource(R.string.add_address_button))
             }
         }
     }
